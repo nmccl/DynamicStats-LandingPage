@@ -1,0 +1,16 @@
+[
+  {
+    "version": "1.0",
+    "date": "2026-10-30",
+    "title": "First release",
+    "body": "Dynamic Stats is here. Live analytics from YouTube, App Store Connect, Hacker News and GitHub, right in your Dynamic Island.",
+    "bullets": [
+      "YouTube: views, likes and comments, updated every 5 minutes from the moment you publish",
+      "App Store Connect: downloads, proceeds, purchases and review status",
+      "Hacker News: rank, points and comments on any post",
+      "GitHub: stars, forks and release downloads",
+      "Lock Screen Live Activity with sparkline",
+      "StandBy, Apple Watch and Mac menu bar support"
+    ]
+  }
+]

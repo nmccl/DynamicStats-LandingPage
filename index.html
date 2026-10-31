@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dynamic Stats — Analytics, right in your Island</title>
+  <meta name="description" content="Dynamic Stats shows live analytics from YouTube, App Store Connect, Hacker News and GitHub directly in your iPhone's Dynamic Island.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Dynamic Stats — Analytics, right in your Island">
+  <meta property="og:description" content="Live views, likes, downloads and stars in your Dynamic Island. Four integrations. Zero distraction.">
+  <meta property="og:image"       content="assets/app-icon.png">
+  <meta name="twitter:card"       content="summary">
+
+  <!-- Icons -->
+  <link rel="icon"             type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon"                  href="assets/app-icon.png">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
+<nav class="nav" aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/app-icon.png" alt="">
+      Dynamic Stats
+    </a>
+    <div class="nav-links">
+      <span class="nav-page-links" style="display:contents;">
+        <a href="updates.html">Updates</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+      <a href="#" class="nav-download" id="nav-app-store-link" aria-label="Download on the App Store">Download</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero" aria-label="Hero">
+
+  <div class="hero__identity">
+    <img src="assets/app-icon.png" alt="Dynamic Stats app icon" class="hero__icon">
+    <h1 class="hero__title">Dynamic Stats</h1>
+    <p class="hero__tagline">Analytics, right in your Island.</p>
+  </div>
+
+  <!-- Animated Dynamic Island -->
+  <div class="island-stage" aria-hidden="true">
+    <div class="island" id="island" role="presentation">
+
+      <!-- Compact state -->
+      <div class="island__compact">
+        <span class="island__compact-icon" id="island-compact-icon"></span>
+        <span class="island__compact-value" id="island-compact-value"></span>
+      </div>
+
+      <!-- Expanded state -->
+      <div class="island__expanded">
+        <div class="island__top">
+          <span class="island__top-icon" id="island-exp-icon"></span>
+          <div class="island__center">
+            <div class="island__center-title" id="island-title"></div>
+            <div class="island__center-sub"   id="island-sub"></div>
+          </div>
+          <span class="island__timer" id="island-timer"></span>
+        </div>
+        <div class="island__metrics" id="island-metrics"></div>
+        <div class="island__sparkline" id="island-sparkline"></div>
+      </div>
+
+    </div>
+    <p class="island-label" id="island-label" aria-live="polite"></p>
+  </div>
+
+  <div class="badge-wrap">
+    <a id="app-store-link" href="#" aria-label="Download Dynamic Stats on the App Store">
+      <img src="assets/app-store-badge.svg" alt="Download on the App Store" width="156" height="52">
+    </a>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════ MODES ═══════════════════════ -->
+<section class="section" aria-labelledby="modes-heading">
+  <div class="wrap">
+    <p class="section-eyebrow reveal">Every mode</p>
+    <h2 class="section-heading reveal" id="modes-heading">Four integrations.<br>Zero manual work.</h2>
+    <p class="section-sub reveal">It starts automatically when you ship. No need to open the app.</p>
+
+    <div class="modes-list">
+
+      <!-- YouTube -->
+      <div class="mode-row reveal">
+        <div class="mode-info">
+          <div class="mode-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3 class="mode-name">YouTube</h3>
+          <p class="mode-tagline">Views, likes and comments on a new video — updated every 5 minutes from the moment you publish.</p>
+          <p class="mode-how">Starts automatically when you publish a public video.</p>
+        </div>
+        <div class="mode-visual">
+          <div class="island-static" aria-hidden="true">
+            <div class="island-static__top">
+              <span class="island-static__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg></span>
+              <span class="island-static__title">Apple Just Changed On-Device AI…</span>
+              <span class="island-static__timer">3:03</span>
+            </div>
+            <div class="island-static__metrics">
+              <div class="island-static__metric"><span class="island-static__label">Views</span><span class="island-static__value">53.4K ▲</span></div>
+              <div class="island-static__metric"><span class="island-static__label">Likes</span><span class="island-static__value">1,318</span></div>
+              <div class="island-static__metric"><span class="island-static__label">Comments</span><span class="island-static__value">91</span></div>
+            </div>
+            <div class="island-static__sparkline"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><polyline points="0,13 17,10 34,7.5 50,5 67,2.5 83,1 100,0.5"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Store Connect -->
+      <div class="mode-row mode-row--flip reveal">
+        <div class="mode-info">
+          <div class="mode-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="14" height="14" rx="3"/><circle cx="17" cy="7" r="4" fill="none"/><circle cx="17" cy="7" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3 class="mode-name">App Store Connect</h3>
+          <p class="mode-tagline">Downloads, proceeds, purchases and review status — from submission through release.</p>
+          <p class="mode-how">Starts when a version is submitted for review, and again when it's released. Track now lets you follow sales at any time.</p>
+        </div>
+        <div class="mode-visual">
+          <div class="island-static" aria-hidden="true">
+            <div class="island-static__top">
+              <span class="island-static__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="3"/><circle cx="17" cy="7" r="4" fill="none"/><circle cx="17" cy="7" r="1.5" fill="currentColor" stroke="none"/></svg></span>
+              <span class="island-static__title">Haze — Immersive Weather</span>
+              <span class="island-static__timer">6:59</span>
+            </div>
+            <div class="island-static__metrics">
+              <div class="island-static__metric"><span class="island-static__label">Downloads</span><span class="island-static__value">3</span></div>
+              <div class="island-static__metric"><span class="island-static__label">Purchases</span><span class="island-static__value">0</span></div>
+              <div class="island-static__metric"><span class="island-static__label">Refunds</span><span class="island-static__value">0</span></div>
+            </div>
+            <div class="island-static__sparkline"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><polyline points="0,7 17,7 34,7 50,5 67,4 83,2 100,1"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hacker News -->
+      <div class="mode-row reveal">
+        <div class="mode-info">
+          <div class="mode-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 8l5 5 5-5M12 13v5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="mode-name">Hacker News</h3>
+          <p class="mode-tagline">Rank, points and comments on your post — so you can watch a Show HN land without refreshing the page.</p>
+          <p class="mode-how">Paste your post's URL to start. No account needed.</p>
+        </div>
+        <div class="mode-visual">
+          <div class="island-static" aria-hidden="true">
+            <div class="island-static__top">
+              <span class="island-static__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 8l5 5 5-5M12 13v5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="island-static__title">Show HN: Dynamic Stats</span>
+              <span class="island-static__timer">0:58</span>
+            </div>
+            <div class="island-static__metrics">
+              <div class="island-static__metric"><span class="island-static__label">Rank</span><span class="island-static__value">12 ▲</span></div>
+              <div class="island-static__metric"><span class="island-static__label">Points</span><span class="island-static__value">247 ▲</span></div>
+              <div class="island-static__metric"><span class="island-static__label">Comments</span><span class="island-static__value">83</span></div>
+            </div>
+            <div class="island-static__sparkline"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><polyline points="0,13 17,10 34,7 50,4.5 67,2.5 83,1.5 100,0.5"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GitHub -->
+      <div class="mode-row mode-row--flip reveal">
+        <div class="mode-info">
+          <div class="mode-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6L4 12l4 6"/><path d="M16 6l4 6-4 6"/><path d="M13 3l-2 18"/></svg>
+          </div>
+          <h3 class="mode-name">GitHub</h3>
+          <p class="mode-tagline">Stars, forks and release downloads — the moment you publish a release, the island starts.</p>
+          <p class="mode-how">Starts automatically when you publish a release. Works with public and private repositories.</p>
+        </div>
+        <div class="mode-visual">
+          <div class="island-static" aria-hidden="true">
+            <div class="island-static__top">
+              <span class="island-static__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6L4 12l4 6"/><path d="M16 6l4 6-4 6"/><path d="M13 3l-2 18"/></svg></span>
+              <span class="island-static__title">v1.0.0</span>
+              <span class="island-static__timer">1:05</span>
+            </div>
+            <div class="island-static__metrics">
+              <div class="island-static__metric"><span class="island-static__label">Stars</span><span class="island-static__value">384 ▲</span></div>
+              <div class="island-static__metric"><span class="island-static__label">Forks</span><span class="island-static__value">28</span></div>
+              <div class="island-static__metric"><span class="island-static__label">Downloads</span><span class="island-static__value">1.2K ▲</span></div>
+            </div>
+            <div class="island-static__sparkline"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><polyline points="0,13 17,11 34,8.5 50,5.5 67,3 83,1.5 100,0.5"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FEATURES ═══════════════════════ -->
+<section class="section" aria-labelledby="features-heading">
+  <div class="wrap">
+    <p class="section-eyebrow reveal">Everywhere you look</p>
+    <h2 class="section-heading reveal" id="features-heading">Always in sight.</h2>
+    <p class="section-sub reveal">The island is just the start. Dynamic Stats keeps your numbers visible across every Apple platform.</p>
+
+    <div class="features-grid stagger">
+
+      <div class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M7 10h10M7 14h6"/></svg>
+        </div>
+        <h3 class="feature__name">StandBy</h3>
+        <p class="feature__desc">Your live stats fill the screen while your iPhone charges. Big numbers, readable from across the room.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="4" width="10" height="16" rx="4"/><path d="M10 2h4M10 22h4"/></svg>
+        </div>
+        <h3 class="feature__name">Apple Watch</h3>
+        <p class="feature__desc">A complication on your watch face keeps your primary metric one wrist-raise away.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 7h20"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="feature__name">Mac Menu Bar</h3>
+        <p class="feature__desc">The same live number sits quietly in your Mac's menu bar while you work — no window, no distraction.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SCREENSHOTS ═══════════════════════ -->
+<section class="section" aria-labelledby="screenshots-heading" style="padding-bottom: 0;">
+  <div class="wrap">
+    <p class="section-eyebrow reveal">Simple by design</p>
+    <h2 class="section-heading reveal" id="screenshots-heading">Connect. Track. Done.</h2>
+    <p class="section-sub reveal">Connect a source once, tap Track when you ship, and the island appears. No configuration, no dashboard.</p>
+  </div>
+
+  <div class="screenshots-scroll" aria-label="App screenshots">
+    <div class="screenshots-inner" role="list">
+
+      <div class="iphone-wrap" role="listitem">
+        <div class="iphone">
+          <div class="iphone__notch"></div>
+          <div class="iphone__screen">
+            <img src="assets/screenshots/youtube.png" alt="YouTube tracking: 53.4K views, 1,318 likes, 91 comments">
+          </div>
+        </div>
+        <p class="iphone-caption">Live — YouTube</p>
+      </div>
+
+      <div class="iphone-wrap" role="listitem">
+        <div class="iphone">
+          <div class="iphone__notch"></div>
+          <div class="iphone__screen">
+            <img src="assets/screenshots/tracking.png" alt="App Store Connect tracking: 3 downloads, 0 purchases, 0 refunds">
+          </div>
+        </div>
+        <p class="iphone-caption">Live — App Store</p>
+      </div>
+
+      <div class="iphone-wrap" role="listitem">
+        <div class="iphone">
+          <div class="iphone__notch"></div>
+          <div class="iphone__screen">
+            <img src="assets/screenshots/home.png" alt="App home screen">
+          </div>
+        </div>
+        <p class="iphone-caption">Home</p>
+      </div>
+
+      <div class="iphone-wrap" role="listitem">
+        <div class="iphone">
+          <div class="iphone__notch"></div>
+          <div class="iphone__screen">
+            <img src="assets/screenshots/sources.png" alt="Sources screen showing connected integrations">
+          </div>
+        </div>
+        <p class="iphone-caption">Sources</p>
+      </div>
+
+      <div class="iphone-wrap" role="listitem">
+        <div class="iphone">
+          <div class="iphone__notch"></div>
+          <div class="iphone__screen">
+            <img src="assets/screenshots/lock-screen.png" alt="Lock Screen with Live Activity showing 53.4K views">
+          </div>
+        </div>
+        <p class="iphone-caption">Lock Screen</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <div class="wrap footer-inner">
+    <span class="footer-brand">
+      <img src="assets/app-icon.png" alt="">
+      Dynamic Stats
+    </span>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="updates.html">Updates</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:noah_mcclung@icloud.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // ── App Store links ─────────────────────────────────────────
+  document.getElementById('app-store-link').href     = APP_STORE_URL;
+  document.getElementById('nav-app-store-link').href = APP_STORE_URL;
+
+  // ── Scroll reveal ────────────────────────────────────────────
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+  // ── Dynamic Island animation ─────────────────────────────────
+  const ICONS = {
+    youtube:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>`,
+    appstore:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="3"/><circle cx="17" cy="7" r="4" fill="none"/><circle cx="17" cy="7" r="1.5" fill="currentColor" stroke="none"/></svg>`,
+    hackernews: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 8l5 5 5-5M12 13v5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    github:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6L4 12l4 6"/><path d="M16 6l4 6-4 6"/><path d="M13 3l-2 18"/></svg>`,
+  };
+
+  const MODES = [
+    {
+      id: 'youtube', label: 'YouTube',
+      title: 'Apple Just Changed On-Device AI…', sub: 'noah', timer: '3:03',
+      compactVal: '53.4K ▲',
+      metrics: [
+        { label: 'Views',    val: 53400, trend: ' ▲' },
+        { label: 'Likes',    val: 1318,  trend: ''   },
+        { label: 'Comments', val: 91,    trend: ''   },
+      ],
+      sparkline: [0, 4000, 12000, 24000, 36000, 47000, 53400],
+    },
+    {
+      id: 'appstore', label: 'App Store Connect',
+      title: 'Haze — Immersive Weather', sub: 'Sales & downloads', timer: '6:59',
+      compactVal: '3',
+      metrics: [
+        { label: 'Downloads', val: 3, trend: '' },
+        { label: 'Purchases', val: 0, trend: '' },
+        { label: 'Refunds',   val: 0, trend: '' },
+      ],
+      sparkline: [0, 0, 0, 1, 2, 3, 3],
+    },
+    {
+      id: 'hackernews', label: 'Hacker News',
+      title: 'Show HN: Dynamic Stats', sub: 'news.ycombinator.com', timer: '0:58',
+      compactVal: '247 ▲',
+      metrics: [
+        { label: 'Rank',     val: 12,  trend: ' ▲' },
+        { label: 'Points',   val: 247, trend: ' ▲' },
+        { label: 'Comments', val: 83,  trend: ''   },
+      ],
+      sparkline: [0, 40, 90, 150, 200, 230, 247],
+    },
+    {
+      id: 'github', label: 'GitHub',
+      title: 'v1.0.0', sub: 'noahmcclung/dynamic-stats', timer: '1:05',
+      compactVal: '384 ▲',
+      metrics: [
+        { label: 'Stars',     val: 384,  trend: ' ▲' },
+        { label: 'Forks',     val: 28,   trend: ''   },
+        { label: 'Downloads', val: 1200, trend: ' ▲' },
+      ],
+      sparkline: [0, 50, 120, 220, 300, 355, 384],
+    },
+  ];
+
+  function fmt(n) {
+    if (n >= 10000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    if (n >= 1000)  return (n / 1000).toFixed(1) + 'K';
+    return n.toString();
+  }
+
+  function sparklineSvg(values) {
+    if (!values || values.length < 2) return '';
+    const lo = Math.min(...values), hi = Math.max(...values);
+    const span = hi - lo || 1;
+    const W = 100, H = 12, pad = 1;
+    const pts = values.map((v, i) => {
+      const x = (i / (values.length - 1)) * W;
+      const y = pad + (H - 2 * pad) * (1 - (v - lo) / span);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+    return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><polyline points="${pts}"/></svg>`;
+  }
+
+  function countUp(el, target, trend, duration) {
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = fmt(Math.round(target * ease)) + trend;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const island     = document.getElementById('island');
+  const cIcon      = document.getElementById('island-compact-icon');
+  const cVal       = document.getElementById('island-compact-value');
+  const eIcon      = document.getElementById('island-exp-icon');
+  const eTitle     = document.getElementById('island-title');
+  const eSub       = document.getElementById('island-sub');
+  const eTimer     = document.getElementById('island-timer');
+  const eMetrics   = document.getElementById('island-metrics');
+  const eSparkline = document.getElementById('island-sparkline');
+  const labelEl    = document.getElementById('island-label');
+
+  let modeIdx = 0;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setCompact(mode) {
+    cIcon.innerHTML  = ICONS[mode.id];
+    cVal.textContent = mode.compactVal;
+  }
+
+  function setExpanded(mode) {
+    eIcon.innerHTML    = ICONS[mode.id];
+    eTitle.textContent = mode.title;
+    eSub.textContent   = mode.sub;
+    eTimer.textContent = mode.timer;
+    eMetrics.innerHTML = mode.metrics.map(m =>
+      `<div class="island__metric">
+         <div class="island__metric-label">${m.label}</div>
+         <div class="island__metric-value" data-target="${m.val}" data-trend="${m.trend}">${fmt(m.val)}${m.trend}</div>
+       </div>`
+    ).join('');
+    eSparkline.innerHTML = sparklineSvg(mode.sparkline);
+  }
+
+  function runCycle() {
+    if (reducedMotion) {
+      const mode = MODES[0];
+      setExpanded(mode);
+      labelEl.textContent = mode.label;
+      island.classList.add('is-expanded');
+      return;
+    }
+
+    const mode = MODES[modeIdx];
+    island.classList.remove('is-expanded');
+    setCompact(mode);
+    labelEl.textContent = mode.label;
+
+    setTimeout(() => {
+      island.classList.add('is-expanded');
+      setExpanded(mode);
+
+      setTimeout(() => {
+        island.querySelectorAll('.island__metric-value').forEach(el => {
+          countUp(el, parseInt(el.dataset.target, 10), el.dataset.trend, 1400);
+        });
+      }, 280);
+
+      setTimeout(() => {
+        island.classList.remove('is-expanded');
+        modeIdx = (modeIdx + 1) % MODES.length;
+        setTimeout(runCycle, 650);
+      }, 3600);
+
+    }, 2000);
+  }
+
+  setTimeout(runCycle, 800);
+</script>
+
+</body>
+</html>

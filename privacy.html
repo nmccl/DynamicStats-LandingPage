@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — Dynamic Stats</title>
+  <meta name="description" content="Dynamic Stats privacy policy. No accounts, no ads, no analytics, no tracking.">
+  <meta property="og:title"       content="Privacy Policy — Dynamic Stats">
+  <meta property="og:description" content="No accounts, no ads, no analytics, no tracking.">
+  <link rel="icon"             type="image/png" href="assets/app-icon.png">
+  <link rel="apple-touch-icon"                  href="assets/app-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/app-icon.png" alt="">
+      Dynamic Stats
+    </a>
+    <div class="nav-links">
+      <span class="nav-page-links" style="display:contents;">
+        <a href="updates.html">Updates</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+      <a href="#" class="nav-download" id="nav-app-store-link" aria-label="Download on the App Store">Download</a>
+    </div>
+  </div>
+</nav>
+<script>document.getElementById('nav-app-store-link').href = APP_STORE_URL;</script>
+
+<div class="wrap--narrow">
+
+  <div class="legal-hero">
+    <p class="legal-hero__eyebrow">Legal</p>
+    <h1 class="legal-hero__title">Privacy Policy</h1>
+    <p class="legal-hero__date">Effective date: October 30, 2026</p>
+  </div>
+
+  <div class="legal-content">
+
+    <p>Dynamic Stats ("the app", "we", "us") is made by Noah McClung. It shows how something you publish is doing (a video, an app, a release, a post) in a Live Activity on your Lock Screen and in the Dynamic Island.</p>
+    <p>This policy explains what the app and its server handle, why, and what control you have. The short version: there are no accounts, no ads, no analytics, and no tracking. We only handle what's needed to fetch your stats and show them on your phone.</p>
+
+    <h2>1. What we collect and why</h2>
+
+    <h3>Information you give us</h3>
+    <p>When you connect a source, you enter details so the server can read your stats on your behalf:</p>
+    <table>
+      <thead><tr><th>Source</th><th>What you enter</th></tr></thead>
+      <tbody>
+        <tr><td>YouTube</td><td>A YouTube Data API key and your channel handle</td></tr>
+        <tr><td>App Store Connect</td><td>An App Store Connect API key (Issuer ID, Key ID, private key), an app's bundle ID, and optionally your vendor number</td></tr>
+        <tr><td>GitHub</td><td>A repository name and, optionally, an access token</td></tr>
+        <tr><td>Hacker News</td><td>A link to a post</td></tr>
+      </tbody>
+    </table>
+    <p>These are used only to fetch your stats. We never use them for anything else.</p>
+
+    <h3>Information created when you use the app</h3>
+    <ul>
+      <li><strong>A device credential.</strong> On first launch the app creates a random identifier and secret for your device. The server stores the identifier and a one-way hash (SHA-256) of the secret, never the secret itself. This is not linked to your name, email, or Apple Account.</li>
+      <li><strong>Push tokens.</strong> Apple Push Notification service tokens let the server update your Live Activity and send you a summary notification. They identify the app installation, not you.</li>
+      <li><strong>Tracking history.</strong> For each thing you track, the server keeps its title, the numbers it collected (for example views, downloads, or points) every 5 minutes, and when tracking started and ended.</li>
+    </ul>
+
+    <h3>Information from the services you connect</h3>
+    <p>The server reads stats from YouTube, App Store Connect, GitHub, and Hacker News using the details above. If you set up App Store Server Notifications, Apple sends the server signed notifications about purchases, renewals, and refunds in your app. The server checks each notification's signature, adds it to a count, and keeps only the notification's ID (to avoid counting it twice). It does not store your customers' transaction details.</p>
+
+    <h3>What we don't collect</h3>
+    <p>No name, email, phone number, contacts, location, photos, or browsing history. No advertising identifiers. No analytics or crash-reporting SDKs. We don't track you across other apps or websites.</p>
+
+    <h2>2. Where it's stored and how it's protected</h2>
+    <ul>
+      <li><strong>On your iPhone:</strong> the device credential and the details you enter are stored in the iOS Keychain. They are set to be readable only on this device (they don't sync to iCloud Keychain or restore onto another device). The server address and whether you finished the intro are stored in the app's local settings.</li>
+      <li><strong>On the server:</strong> the server runs on Fly.io in the United States. The details you enter are encrypted with AES-256-GCM before they are saved. They are never sent back to the app or shown to anyone. All traffic between the app and the server uses HTTPS.</li>
+      <li><strong>Self-hosting:</strong> if you point the app at your own server in Settings, your data goes to that server instead. This policy doesn't cover servers we don't operate.</li>
+    </ul>
+
+    <h2>3. How long we keep it</h2>
+    <table>
+      <thead><tr><th>Data</th><th>Kept</th></tr></thead>
+      <tbody>
+        <tr><td>YouTube stats</td><td>Deleted 30 days after tracking ends, as YouTube's API Services policies require</td></tr>
+        <tr><td>App Store notification IDs</td><td>Deleted after 30 days</td></tr>
+        <tr><td>Your source details (keys, tokens)</td><td>Until you disconnect the source, which deletes them from the server and this iPhone</td></tr>
+        <tr><td>Other tracking history (App Store, GitHub, Hacker News)</td><td>Until you ask us to delete it</td></tr>
+        <tr><td>Device credential and push tokens</td><td>Until you ask us to delete them</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. Who we share it with</h2>
+    <p>We don't sell or rent your information, and we don't share it for advertising. It only reaches:</p>
+    <ul>
+      <li><strong>The services you connect</strong> (Google/YouTube, Apple App Store Connect, GitHub, Hacker News), and only when the server asks them for your stats using the details you provided.</li>
+      <li><strong>Apple Push Notification service</strong>, to deliver Live Activity updates and notifications.</li>
+      <li><strong>Fly.io</strong>, which hosts the server and stores its database.</li>
+      <li><strong>Authorities</strong>, if the law requires it.</li>
+    </ul>
+
+    <h2>5. YouTube</h2>
+    <p>Dynamic Stats uses YouTube API Services. By connecting YouTube, you agree to the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>. Google's handling of data is described in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+    <p>The app uses an API key that you create in your own Google Cloud project. To stop the app's access, disconnect YouTube in the app, then delete or restrict that key in the <a href="https://console.cloud.google.com/apis/credentials">Google Cloud console</a>.</p>
+
+    <h2>6. Your choices and rights</h2>
+    <ul>
+      <li><strong>Disconnect a source</strong> in the app (Sources › the source › Disconnect). This stops tracking and deletes its keys from the server and your iPhone.</li>
+      <li><strong>Turn off Live Activities or notifications</strong> at any time in iOS Settings › Dynamic Stats.</li>
+      <li><strong>Delete everything:</strong> email us from the address below with the subject "Delete my data". We'll delete your device record, sources, and tracking history within 30 days. Deleting the app removes everything stored on your iPhone.</li>
+      <li>Depending on where you live (for example under the GDPR or the CCPA), you may have the right to access, correct, delete, or export your data, or to object to how it's used. Email us to use any of these rights. We don't sell or share personal information as those laws define it.</li>
+    </ul>
+
+    <h2>7. Children</h2>
+    <p>Dynamic Stats is not directed at children under 13 (or the equivalent minimum age where you live). We don't knowingly collect information from them.</p>
+
+    <h2>8. Changes</h2>
+    <p>If we change this policy, we'll update the effective date above. If a change is significant, we'll also tell you in the app.</p>
+
+    <h2>9. Contact</h2>
+    <p>Noah McClung<br><a href="mailto:noah_mcclung@icloud.com">noah_mcclung@icloud.com</a></p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="footer-brand">
+      <img src="assets/app-icon.png" alt="">
+      Dynamic Stats
+    </span>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="updates.html">Updates</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:noah_mcclung@icloud.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
